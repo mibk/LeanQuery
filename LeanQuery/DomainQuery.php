@@ -285,7 +285,7 @@ class DomainQuery
 	 */
 	public function getEntity()
 	{
-		$entities = $this->getEntities();
+		$entities = (array) $this->getEntities();
 		return ($entity = reset($entities)) !== false ? $entity : null;
 	}
 
