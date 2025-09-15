@@ -11,16 +11,14 @@ use LeanMapper\Reflection\Property;
  */
 class QueryHelper
 {
-
 	const PREFIX_SEPARATOR = '__';
 
-
 	/**
-	 * @param EntityReflection $entityReflection
-	 * @param string $tableAlias
-	 * @param string $prefix
+	 * @param    EntityReflection $entityReflection
+	 * @param    string           $tableAlias
+	 * @param    string           $prefix
 	 * @internal param string $entityClass
-	 * @return array
+	 * @return   array
 	 */
 	public function formatSelect(EntityReflection $entityReflection, $tableAlias, $prefix = null)
 	{
@@ -36,9 +34,9 @@ class QueryHelper
 	}
 
 	/**
-	 * @param Property $property
-	 * @param string $tableAlias
-	 * @param string $prefix
+	 * @param  Property $property
+	 * @param  string   $tableAlias
+	 * @param  string   $prefix
 	 * @return string
 	 * @throws InvalidArgumentException
 	 */
@@ -52,5 +50,4 @@ class QueryHelper
 
 		return $prefix . self::PREFIX_SEPARATOR . $column;
 	}
-
 }

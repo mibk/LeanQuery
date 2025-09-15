@@ -31,10 +31,10 @@ if (!copy(__DIR__ . '/db/library-ref.sq3', __DIR__ . '/db/library.sq3')) {
 require_once(__DIR__ . '/model.php');
 
 $connection = new Connection(array(
-	'driver' => 'sqlite3',
+	'driver'   => 'sqlite3',
 	'database' => __DIR__ . '/db/library.sq3',
 ));
-$connection->onEvent[] = function ($event) use (&$queries) {
+$connection->onEvent[] = function($event) use (&$queries) {
 	$queries[] = $event->sql;
 };
 $mapper = new Mapper;

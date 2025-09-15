@@ -17,9 +17,9 @@ $domainQueryFactory = new DomainQueryFactory($entityFactory, $connection, $mappe
 $domainQuery = $domainQueryFactory->createQuery();
 
 $domainQuery->select('b')
-		->from('Book', 'b')
-		->join('b.author', 'a')->select('a')
-		->leftJoin('b.tags', 't')->select('t');
+	->from('Book', 'b')
+	->join('b.author', 'a')->select('a')
+	->leftJoin('b.tags', 't')->select('t');
 
 $books = $domainQuery->getEntities();
 
@@ -37,20 +37,20 @@ foreach ($books as $book) {
 Assert::count(1, $queries);
 
 $expected =
-		"SELECT [b].[id] AS [b__id], [b].[author_id] AS [b__author_id], [b].[reviewer_id] AS [b__reviewer_id], " .
-		"[b].[name] AS [b__name], [b].[pubdate] AS [b__pubdate], [b].[description] AS [b__description], [b].[website] AS [b__website], " .
-		"[b].[available] AS [b__available] , [a].[id] AS [a__id], [a].[name] AS [a__name], [a].[web] AS [a__web] , [t].[id] AS [t__id], " .
-		"[t].[name] AS [t__name] , [book_tag1].[id] AS [book_tag1__id], [book_tag1].[book_id] AS [book_tag1__book_id], " .
-		"[book_tag1].[tag_id] AS [book_tag1__tag_id] " .
-		"FROM [book] AS [b] " .
-		"JOIN [author] AS [a] ON [b].[author_id] = [a].[id] " .
-		"LEFT JOIN [book_tag] AS [book_tag1] ON [b].[id] = [book_tag1].[book_id] " .
-		"LEFT JOIN [tag] AS [t] ON [book_tag1].[tag_id] = [t].[id]";
+	"SELECT [b].[id] AS [b__id], [b].[author_id] AS [b__author_id], [b].[reviewer_id] AS [b__reviewer_id], " .
+	"[b].[name] AS [b__name], [b].[pubdate] AS [b__pubdate], [b].[description] AS [b__description], [b].[website] AS [b__website], " .
+	"[b].[available] AS [b__available] , [a].[id] AS [a__id], [a].[name] AS [a__name], [a].[web] AS [a__web] , [t].[id] AS [t__id], " .
+	"[t].[name] AS [t__name] , [book_tag1].[id] AS [book_tag1__id], [book_tag1].[book_id] AS [book_tag1__book_id], " .
+	"[book_tag1].[tag_id] AS [book_tag1__tag_id] " .
+	"FROM [book] AS [b] " .
+	"JOIN [author] AS [a] ON [b].[author_id] = [a].[id] " .
+	"LEFT JOIN [book_tag] AS [book_tag1] ON [b].[id] = [book_tag1].[book_id] " .
+	"LEFT JOIN [tag] AS [t] ON [book_tag1].[tag_id] = [t].[id]";
 
 Assert::equal($expected, $queries[0]);
 
 $expected =
-'The Pragmatic Programmer
+	'The Pragmatic Programmer
 	Author: Andrew Hunt
 	Tags:
 		popular
@@ -80,9 +80,9 @@ $queries = array();
 $domainQuery = $domainQueryFactory->createQuery();
 
 $domainQuery->select('b, a')
-		->from('Book', 'b')
-		->join('b.author', 'a')
-		->join('b.tags', 't');
+	->from('Book', 'b')
+	->join('b.author', 'a')
+	->join('b.tags', 't');
 
 $domainQuery->getEntities();
 $domainQuery->getEntities(); // testing cache
@@ -98,18 +98,18 @@ foreach ($books as $book) {
 Assert::count(1, $queries);
 
 $expected =
-		"SELECT [b].[id] AS [b__id], [b].[author_id] AS [b__author_id], [b].[reviewer_id] AS [b__reviewer_id], " .
-		"[b].[name] AS [b__name], [b].[pubdate] AS [b__pubdate], [b].[description] AS [b__description], [b].[website] AS [b__website], " .
-		"[b].[available] AS [b__available] , [a].[id] AS [a__id], [a].[name] AS [a__name], [a].[web] AS [a__web] " .
-		"FROM [book] AS [b] " .
-		"JOIN [author] AS [a] ON [b].[author_id] = [a].[id] " .
-		"JOIN [book_tag] AS [book_tag1] ON [b].[id] = [book_tag1].[book_id] " .
-		"JOIN [tag] AS [t] ON [book_tag1].[tag_id] = [t].[id]";
+	"SELECT [b].[id] AS [b__id], [b].[author_id] AS [b__author_id], [b].[reviewer_id] AS [b__reviewer_id], " .
+	"[b].[name] AS [b__name], [b].[pubdate] AS [b__pubdate], [b].[description] AS [b__description], [b].[website] AS [b__website], " .
+	"[b].[available] AS [b__available] , [a].[id] AS [a__id], [a].[name] AS [a__name], [a].[web] AS [a__web] " .
+	"FROM [book] AS [b] " .
+	"JOIN [author] AS [a] ON [b].[author_id] = [a].[id] " .
+	"JOIN [book_tag] AS [book_tag1] ON [b].[id] = [book_tag1].[book_id] " .
+	"JOIN [tag] AS [t] ON [book_tag1].[tag_id] = [t].[id]";
 
 Assert::equal($expected, $queries[0]);
 
 $expected =
-'The Pragmatic Programmer
+	'The Pragmatic Programmer
 	Author: Andrew Hunt
 Refactoring: Improving the Design of Existing Code
 	Author: Martin Fowler
@@ -126,8 +126,8 @@ $queries = array();
 $domainQuery = $domainQueryFactory->createQuery();
 
 $domainQuery->from('Book', 'b')->select('b')
-		->join('b.author', 'a')
-		->join('b.tags', 't');
+	->join('b.author', 'a')
+	->join('b.tags', 't');
 
 $books = $domainQuery->getEntities();
 
@@ -146,12 +146,12 @@ Assert::count(4, $queries);
 
 $expected = array(
 	"SELECT [b].[id] AS [b__id], [b].[author_id] AS [b__author_id], [b].[reviewer_id] AS [b__reviewer_id], " .
-	"[b].[name] AS [b__name], [b].[pubdate] AS [b__pubdate], [b].[description] AS [b__description], " .
-	"[b].[website] AS [b__website], [b].[available] AS [b__available] " .
-	"FROM [book] AS [b] " .
-	"JOIN [author] AS [a] ON [b].[author_id] = [a].[id] " .
-	"JOIN [book_tag] AS [book_tag1] ON [b].[id] = [book_tag1].[book_id] " .
-	"JOIN [tag] AS [t] ON [book_tag1].[tag_id] = [t].[id]",
+		"[b].[name] AS [b__name], [b].[pubdate] AS [b__pubdate], [b].[description] AS [b__description], " .
+		"[b].[website] AS [b__website], [b].[available] AS [b__available] " .
+		"FROM [book] AS [b] " .
+		"JOIN [author] AS [a] ON [b].[author_id] = [a].[id] " .
+		"JOIN [book_tag] AS [book_tag1] ON [b].[id] = [book_tag1].[book_id] " .
+		"JOIN [tag] AS [t] ON [book_tag1].[tag_id] = [t].[id]",
 
 	"SELECT [author].* FROM [author] WHERE [author].[id] IN (1, 3, 5)",
 	"SELECT [book_tag].* FROM [book_tag] WHERE [book_tag].[book_id] IN (1, 3, 4)",
@@ -161,7 +161,7 @@ $expected = array(
 Assert::equal($expected, $queries);
 
 $expected =
-'The Pragmatic Programmer
+	'The Pragmatic Programmer
 	Author: Andrew Hunt
 	Tags:
 		popular
@@ -221,7 +221,7 @@ $expected =
 Assert::equal($expected, $queries[0]);
 
 $expected =
-'The Pragmatic Programmer
+	'The Pragmatic Programmer
 	Author: Andrew Hunt
 	Tags:
 		ebook
@@ -277,7 +277,7 @@ $expected =
 Assert::equal($expected, $queries[0]);
 
 $expected =
-'Refactoring: Improving the Design of Existing Code
+	'Refactoring: Improving the Design of Existing Code
 	Author: Martin Fowler
 Introduction to Algorithms
 	Author: Thomas H. Cormen

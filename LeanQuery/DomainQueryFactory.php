@@ -11,7 +11,6 @@ use LeanMapper\IMapper;
  */
 class DomainQueryFactory
 {
-
 	/** @var IEntityFactory */
 	private $enityFactory;
 
@@ -27,13 +26,12 @@ class DomainQueryFactory
 	/** @var QueryHelper */
 	private $queryHelper;
 
-
 	/**
 	 * @param IEntityFactory $enityFactory
-	 * @param Connection $connection
-	 * @param IMapper $mapper
-	 * @param Hydrator $hydrator
-	 * @param QueryHelper $queryHelper
+	 * @param Connection     $connection
+	 * @param IMapper        $mapper
+	 * @param Hydrator       $hydrator
+	 * @param QueryHelper    $queryHelper
 	 */
 	public function __construct(IEntityFactory $enityFactory, Connection $connection, IMapper $mapper, Hydrator $hydrator, QueryHelper $queryHelper)
 	{
@@ -51,5 +49,4 @@ class DomainQueryFactory
 	{
 		return new DomainQuery($this->enityFactory, $this->connection, $this->mapper, $this->hydrator, $this->queryHelper);
 	}
-
 }

@@ -13,17 +13,15 @@ use LeanMapper\Result;
  */
 class Hydrator
 {
-
 	/** @var Connection */
 	private $connection;
 
 	/** @var IMapper */
 	private $mapper;
 
-
 	/**
 	 * @param Connection $connection
-	 * @param IMapper $mapper
+	 * @param IMapper    $mapper
 	 */
 	public function __construct(Connection $connection, IMapper $mapper)
 	{
@@ -32,9 +30,9 @@ class Hydrator
 	}
 
 	/**
-	 * @param Dibi\Row[] $data
-	 * @param HydratorMeta $hydratorMeta
-	 * @param array|null $relationshipsFilter
+	 * @param  Dibi\Row[]   $data
+	 * @param  HydratorMeta $hydratorMeta
+	 * @param  array|null   $relationshipsFilter
 	 * @return array
 	 */
 	public function buildResultsGraph(array $data, HydratorMeta $hydratorMeta, array $relationshipsFilter = null)
@@ -57,8 +55,8 @@ class Hydrator
 				list($prefix, $field) = $index[$field];
 				if (
 					!isset($results[$prefix]) or
-					!isset($currentPrimaryKeys[$prefix]) or
-					isset($results[$prefix][$currentPrimaryKeys[$prefix]][$field])
+						!isset($currentPrimaryKeys[$prefix]) or
+						isset($results[$prefix][$currentPrimaryKeys[$prefix]][$field])
 				) {
 					continue;
 				}
@@ -82,8 +80,8 @@ class Hydrator
 	////////////////////
 
 	/**
-	 * @param array $results
-	 * @param Relationship[] $relationships
+	 * @param  array          $results
+	 * @param  Relationship[] $relationships
 	 * @return array
 	 * @throws InvalidArgumentException
 	 */
@@ -106,5 +104,4 @@ class Hydrator
 		}
 		return $results;
 	}
-
 }

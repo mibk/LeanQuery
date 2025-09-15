@@ -9,17 +9,15 @@ use LeanMapper\Exception\InvalidArgumentException;
  */
 class Aliases
 {
-
 	/** @var array */
 	private $aliases = array();
 
 	/** @var array */
 	private $index = array();
 
-
 	/**
-	 * @param string $alias
-	 * @param string $entityClass
+	 * @param  string $alias
+	 * @param  string $entityClass
 	 * @throws InvalidArgumentException
 	 */
 	public function addAlias($alias, $entityClass)
@@ -34,7 +32,7 @@ class Aliases
 	}
 
 	/**
-	 * @param string $alias
+	 * @param  string $alias
 	 * @throws InvalidArgumentException
 	 * @return string
 	 */
@@ -47,7 +45,7 @@ class Aliases
 	}
 
 	/**
-	 * @param string $entityClass
+	 * @param  string $entityClass
 	 * @return string
 	 * @throws InvalidArgumentException
 	 */
@@ -60,12 +58,11 @@ class Aliases
 	}
 
 	/**
-	 * @param string $alias
+	 * @param  string $alias
 	 * @return bool
 	 */
 	public function hasAlias($alias)
 	{
 		return array_key_exists($alias, $this->aliases);
 	}
-
 }

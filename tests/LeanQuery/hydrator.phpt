@@ -18,11 +18,11 @@ $bookReflection = Book::getReflection($mapper);
 $bookTable = 'book';
 
 $data = $connection->select($queryHelper->formatSelect(Author::getReflection($mapper), $authorTable, $authorPrefix) + $queryHelper->formatSelect(Book::getReflection($mapper), $bookTable))
-		->from('%n AS %n', $authorTable, $authorTable)
-		->join($bookTable)->on('%n.%n = %n.%n', $bookTable, $bookReflection->getEntityProperty('author')->getColumn(), $authorTable, $authorReflection->getEntityProperty('id')->getColumn())
-		->where('%n != %s', $queryHelper->formatColumn($bookReflection->getEntityProperty('name'), $bookTable), 'The Pragmatic Programmer')
-		->where('LENGTH(%n) > %i', $queryHelper->formatColumn($bookReflection->getEntityProperty('name'), $bookTable), 13)
-		->fetchAll();
+	->from('%n AS %n', $authorTable, $authorTable)
+	->join($bookTable)->on('%n.%n = %n.%n', $bookTable, $bookReflection->getEntityProperty('author')->getColumn(), $authorTable, $authorReflection->getEntityProperty('id')->getColumn())
+	->where('%n != %s', $queryHelper->formatColumn($bookReflection->getEntityProperty('name'), $bookTable), 'The Pragmatic Programmer')
+	->where('LENGTH(%n) > %i', $queryHelper->formatColumn($bookReflection->getEntityProperty('name'), $bookTable), 13)
+	->fetchAll();
 
 $hydratorMeta = new HydratorMeta;
 $hydratorMeta->addTablePrefix('autor', 'author');
@@ -54,17 +54,17 @@ foreach ($authors as $author) {
 Assert::count(1, $queries);
 
 $expected =
-		"SELECT [author].[id] AS [autor__id], [author].[name] AS [autor__name], [author].[web] AS [autor__web], " .
-		"[book].[id] AS [book__id], [book].[author_id] AS [book__author_id], [book].[reviewer_id] AS [book__reviewer_id], [book].[name] AS [book__name], " .
-		"[book].[pubdate] AS [book__pubdate], [book].[description] AS [book__description], [book].[website] AS [book__website], [book].[available] AS [book__available] " .
-		"FROM [author] AS [author] " .
-		"JOIN [book] ON [book].[author_id] = [author].[id] " .
-		"WHERE [book__name] != 'The Pragmatic Programmer' AND LENGTH([book__name]) > 13";
+	"SELECT [author].[id] AS [autor__id], [author].[name] AS [autor__name], [author].[web] AS [autor__web], " .
+	"[book].[id] AS [book__id], [book].[author_id] AS [book__author_id], [book].[reviewer_id] AS [book__reviewer_id], [book].[name] AS [book__name], " .
+	"[book].[pubdate] AS [book__pubdate], [book].[description] AS [book__description], [book].[website] AS [book__website], [book].[available] AS [book__available] " .
+	"FROM [author] AS [author] " .
+	"JOIN [book] ON [book].[author_id] = [author].[id] " .
+	"WHERE [book__name] != 'The Pragmatic Programmer' AND LENGTH([book__name]) > 13";
 
 Assert::equal($expected, $queries[0]);
 
 $expected =
-'Donald Knuth
+	'Donald Knuth
 	The Art of Computer Programming
 		Donald Knuth
 			The Art of Computer Programming

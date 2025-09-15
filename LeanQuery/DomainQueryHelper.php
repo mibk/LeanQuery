@@ -16,7 +16,6 @@ use stdClass;
  */
 class DomainQueryHelper
 {
-
 	/** @var IMapper */
 	private $mapper;
 
@@ -41,13 +40,12 @@ class DomainQueryHelper
 	/** @var int */
 	private $awaitedParameters;
 
-
 	/**
-	 * @param IMapper $mapper
-	 * @param Aliases $aliases
+	 * @param IMapper      $mapper
+	 * @param Aliases      $aliases
 	 * @param HydratorMeta $hydratorMeta
-	 * @param stdClass $clauses
-	 * @param ArrayObject $relationshipTables
+	 * @param stdClass     $clauses
+	 * @param ArrayObject  $relationshipTables
 	 */
 	public function __construct(IMapper $mapper, Aliases $aliases, HydratorMeta $hydratorMeta, stdClass $clauses, ArrayObject $relationshipTables)
 	{
@@ -59,7 +57,7 @@ class DomainQueryHelper
 	}
 
 	/**
-	 * @param string $entityClass
+	 * @param  string $entityClass
 	 * @throws InvalidArgumentException
 	 * @return EntityReflection
 	 */
@@ -85,8 +83,8 @@ class DomainQueryHelper
 		$this->aliases->addAlias($alias, $entityClass);
 		$this->clauses->from = array(
 			'entityClass' => $entityClass,
-			'table' => $table,
-			'alias' => $alias
+			'table'       => $table,
+			'alias'       => $alias
 		);
 
 		$this->hydratorMeta->addTablePrefix($alias, $table);
@@ -94,9 +92,9 @@ class DomainQueryHelper
 	}
 
 	/**
-	 * @param string $definition
-	 * @param string $alias
-	 * @param string $type
+	 * @param  string $definition
+	 * @param  string $alias
+	 * @param  string $type
 	 * @throws InvalidArgumentException
 	 */
 	public function addJoinByType($definition, $alias, $type)
@@ -113,7 +111,7 @@ class DomainQueryHelper
 
 		if ($relationship instanceof HasMany) {
 			$this->clauses->join[] = array(
-				'type' => $type,
+				'type'           => $type,
 				'joinParameters' => array(
 					$relationshipTable = $relationship->getRelationshipTable(),
 					$relTableAlias = $relationshipTable . $this->indexer,
@@ -135,7 +133,7 @@ class DomainQueryHelper
 			);
 
 			$this->clauses->join[] = array(
-				'type' => $type,
+				'type'           => $type,
 				'joinParameters' => array(
 					$targetTable = $relationship->getTargetTable(),
 					$alias,
@@ -165,7 +163,7 @@ class DomainQueryHelper
 			$this->indexer++;
 		} else {
 			$this->clauses->join[] = array(
-				'type' => $type,
+				'type'           => $type,
 				'joinParameters' => array(
 					$targetTable = $relationship->getTargetTable(),
 					$alias,
@@ -235,8 +233,8 @@ class DomainQueryHelper
 	}
 
 	/**
-	 * @param string $property
-	 * @param string $direction
+	 * @param  string $property
+	 * @param  string $direction
 	 * @throws InvalidArgumentException
 	 */
 	public function addOrderBy($property, $direction)
@@ -257,7 +255,7 @@ class DomainQueryHelper
 	////////////////////
 
 	/**
-	 * @param string $definition
+	 * @param  string $definition
 	 * @return array
 	 * @throws InvalidArgumentException
 	 */
@@ -271,7 +269,7 @@ class DomainQueryHelper
 	}
 
 	/**
-	 * @param array $matches
+	 * @param  array $matches
 	 * @return string
 	 * @throws InvalidArgumentException
 	 */
@@ -303,5 +301,4 @@ class DomainQueryHelper
 
 		return "[$alias.$column]";
 	}
-
 }

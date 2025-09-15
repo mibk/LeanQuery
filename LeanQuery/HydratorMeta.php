@@ -9,7 +9,6 @@ use LeanMapper\Exception\InvalidArgumentException;
  */
 class HydratorMeta
 {
-
 	/** @var array */
 	private $tablesByPrefixes = array();
 
@@ -19,9 +18,8 @@ class HydratorMeta
 	/** @var array */
 	private $relationships = array();
 
-
 	/**
-	 * @param string $prefix
+	 * @param  string $prefix
 	 * @return string
 	 * @throws InvalidArgumentException
 	 */
@@ -42,8 +40,8 @@ class HydratorMeta
 	}
 
 	/**
-	 * @param string $prefix
-	 * @param string $table
+	 * @param  string $prefix
+	 * @param  string $table
 	 * @throws InvalidArgumentException
 	 */
 	public function addTablePrefix($prefix, $table)
@@ -55,7 +53,7 @@ class HydratorMeta
 	}
 
 	/**
-	 * @param string $table
+	 * @param  string $table
 	 * @return string
 	 * @throws InvalidArgumentException
 	 */
@@ -68,8 +66,8 @@ class HydratorMeta
 	}
 
 	/**
-	 * @param string $table
-	 * @param string $primaryKey
+	 * @param  string $table
+	 * @param  string $primaryKey
 	 * @throws InvalidArgumentException
 	 */
 	public function addPrimaryKey($table, $primaryKey)
@@ -81,7 +79,7 @@ class HydratorMeta
 	}
 
 	/**
-	 * @param array $filter
+	 * @param  array $filter
 	 * @return array
 	 */
 	public function getRelationships(array $filter = null)
@@ -90,8 +88,8 @@ class HydratorMeta
 	}
 
 	/**
-	 * @param string $alias
-	 * @param Relationship|string $relationship
+	 * @param  string              $alias
+	 * @param  Relationship|string $relationship
 	 * @throws InvalidArgumentException
 	 */
 	public function addRelationship($alias, $relationship)
@@ -101,5 +99,4 @@ class HydratorMeta
 		}
 		$this->relationships[$alias] = $relationship instanceof Relationship ? $relationship : Relationship::createFromString($relationship);
 	}
-
 }

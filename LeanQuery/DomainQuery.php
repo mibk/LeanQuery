@@ -20,7 +20,6 @@ use stdClass;
  */
 class DomainQuery
 {
-
 	const PATTERN_IDENTIFIER = '[a-zA-Z0-9_\x7f-\xff]+'; // TODO: move to separate class in Lean Mapper
 
 	const JOIN_TYPE_INNER = 'join';
@@ -67,13 +66,12 @@ class DomainQuery
 	/** @var Entity[] */
 	private $entities;
 
-
 	/**
 	 * @param IEntityFactory $entityFactory
-	 * @param Connection $connection
-	 * @param IMapper $mapper
-	 * @param Hydrator $hydrator
-	 * @param QueryHelper $queryHelper
+	 * @param Connection     $connection
+	 * @param IMapper        $mapper
+	 * @param Hydrator       $hydrator
+	 * @param QueryHelper    $queryHelper
 	 */
 	public function __construct(IEntityFactory $entityFactory, Connection $connection, IMapper $mapper, Hydrator $hydrator, QueryHelper $queryHelper)
 	{
@@ -86,10 +84,10 @@ class DomainQuery
 		$this->aliases = new Aliases;
 		$this->hydratorMeta = new HydratorMeta;
 		$this->clauses = (object) array(
-			'select' => array(),
-			'from' => null,
-			'join' => array(),
-			'where' => array(),
+			'select'  => array(),
+			'from'    => null,
+			'join'    => array(),
+			'where'   => array(),
 			'orderBy' => array(),
 		);
 		$this->relationshipTables = new ArrayObject;
@@ -97,7 +95,7 @@ class DomainQuery
 	}
 
 	/**
-	 * @param string $aliases
+	 * @param  string $aliases
 	 * @throws InvalidArgumentException
 	 * @return self
 	 */
@@ -114,8 +112,8 @@ class DomainQuery
 	}
 
 	/**
-	 * @param string $entityClass
-	 * @param string $alias
+	 * @param  string $entityClass
+	 * @param  string $alias
 	 * @throws InvalidMethodCallException
 	 * @return self
 	 */
@@ -132,8 +130,8 @@ class DomainQuery
 	}
 
 	/**
-	 * @param string $definition
-	 * @param string $alias
+	 * @param  string $definition
+	 * @param  string $alias
 	 * @return self
 	 */
 	public function join($definition, $alias)
@@ -145,8 +143,8 @@ class DomainQuery
 	}
 
 	/**
-	 * @param string $definition
-	 * @param string $alias
+	 * @param  string $definition
+	 * @param  string $alias
 	 * @return self
 	 */
 	public function leftJoin($definition, $alias)
@@ -158,7 +156,7 @@ class DomainQuery
 	}
 
 	/**
-	 * @param $args
+	 * @param  mixed $args
 	 * @return $this
 	 */
 	public function where($args)
@@ -170,18 +168,18 @@ class DomainQuery
 	}
 
 	/**
-	 * @param string $property
-	 * @param string $direction
+	 * @param  string $property
+	 * @param  string $direction
 	 * @return self
 	 * @throws InvalidArgumentException
 	 */
 	public function orderBy($property, $direction = self::ORDER_ASC)
-    {
-	    $this->cleanCache();
+	{
+		$this->cleanCache();
 
-	    $this->domainQueryHelper->addOrderBy($property, $direction);
-	    return $this;
-    }
+		$this->domainQueryHelper->addOrderBy($property, $direction);
+		return $this;
+	}
 
 	/**
 	 * @return Fluent
@@ -237,7 +235,7 @@ class DomainQuery
 	}
 
 	/**
-	 * @param string $alias
+	 * @param  string $alias
 	 * @throws InvalidArgumentException
 	 * @return Result
 	 */
@@ -296,5 +294,4 @@ class DomainQuery
 	{
 		$this->results = $this->entities = NULL;
 	}
-
 }

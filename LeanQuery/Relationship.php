@@ -9,7 +9,6 @@ use LeanMapper\Exception\InvalidArgumentException;
  */
 class Relationship
 {
-
 	const DIRECTION_REFERENCED = '=>';
 
 	const DIRECTION_REFERENCING = '<=';
@@ -39,15 +38,14 @@ class Relationship
 	/** @var string */
 	private $primaryKeyColumn;
 
-
 	/**
-	 * @param string $sourcePrefix
-	 * @param string $sourceTable
-	 * @param string $relationshipColumn
-	 * @param string $direction
-	 * @param string $targetPrefix
-	 * @param string $targetTable
-	 * @param string $primaryKeyColumn
+	 * @param  string $sourcePrefix
+	 * @param  string $sourceTable
+	 * @param  string $relationshipColumn
+	 * @param  string $direction
+	 * @param  string $targetPrefix
+	 * @param  string $targetTable
+	 * @param  string $primaryKeyColumn
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct($sourcePrefix, $sourceTable, $relationshipColumn, $direction, $targetPrefix, $targetTable, $primaryKeyColumn)
@@ -65,7 +63,7 @@ class Relationship
 	}
 
 	/**
-	 * @param string $definition
+	 * @param  string $definition
 	 * @return self
 	 * @throws InvalidArgumentException
 	 */
@@ -149,5 +147,4 @@ class Relationship
 	{
 		return $this->primaryKeyColumn;
 	}
-
 }
